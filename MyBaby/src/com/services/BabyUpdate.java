@@ -8,7 +8,6 @@ import javax.ws.rs.core.MediaType;
 import com.OperationDB.OperationDBBabyUpdate;
 import com.bean.BabyBean;
 import com.google.gson.Gson;
-
 @Path("/oldbaby")
 public class BabyUpdate {
 	@POST
@@ -45,5 +44,4 @@ public class BabyUpdate {
 		return gson.toJson(bean3);
 		
 	}
-
 }
