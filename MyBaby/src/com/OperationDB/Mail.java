@@ -41,7 +41,7 @@ public class Mail
 	        message.setText("Dear MyBaby account holder," +
 	                "\n\n This is an automated email, please don’t reply"
 	                + " \n\n To recover your sign-in details for MyBaby"
-	                + " \n\n please enter this password  "+bean.getRandom()+"      !"
+	                + " \n\n please enter this password  "+bean.getRandom()+"   !"
 	                + "  ");
 	
 	        Transport.send(message);
