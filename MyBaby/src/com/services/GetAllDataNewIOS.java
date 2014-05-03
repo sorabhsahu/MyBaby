@@ -16,13 +16,12 @@ public class GetAllDataNewIOS {
 	@POST
 	@Path("/allfileIOS")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String get(@FormParam("email")String email,@FormParam("bname") String bname)
+	public String get(@FormParam("email")String email)
 	{
 		Gson gson=new Gson();
 		OperationDBGetAllDataNewIOS op=new OperationDBGetAllDataNewIOS();
 		BabyBean bean=new BabyBean();
 		bean.setEmail(email);
-		bean.setBname(bname);
 		JSONObject aa = new JSONObject();
 		aa=op.getIn(bean);
 		return gson.toJson(aa);

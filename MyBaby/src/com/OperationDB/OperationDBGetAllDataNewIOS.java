@@ -24,7 +24,7 @@ public class OperationDBGetAllDataNewIOS {
          }
          catch(Exception e)
          {
-             System.out.println("Exception 2 "+e);
+              System.out.println("Exception 2 "+e);
          }
 	}
     public JSONObject getIn(BabyBean bean)
@@ -33,7 +33,7 @@ public class OperationDBGetAllDataNewIOS {
     	ArrayList<String> arraylist=new ArrayList<String>();
     	try
         {  
-            String query=" select date from newstorageDB where email ='"+bean.getEmail()+"' and bname='"+bean.getBname()+"'  group by date;";     
+            String query=" select date from newstorageDB where email ='"+bean.getEmail()+"'  group by date;";     
            
             re=stm.executeQuery(query);
             while(re.next())
@@ -50,10 +50,10 @@ public class OperationDBGetAllDataNewIOS {
     	{
     		int i=0;
     		count=0;
-    		System.out.print(arraylist.get(loop));
+    		System.out.println(arraylist.get(loop));
     		try
             {  
-                String query="select * from newstorageDB where email='"+bean.getEmail()+"' and bname='"+bean.getBname()+"' and date='"+arraylist.get(loop)+"' ";     
+                String query="select * from newstorageDB where email='"+bean.getEmail()+"' and date='"+arraylist.get(loop)+"' ";     
                 re=stm.executeQuery(query);
                 while(re.next())
                 {     
@@ -68,7 +68,7 @@ public class OperationDBGetAllDataNewIOS {
     		BabyBean beanarray[]=new BabyBean[count];
     		try
 	        {   
-	            String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"' and bname='"+bean.getBname()+"' and date='"+arraylist.get(loop)+"'";                         
+	            String query="select movement, image, atribute, type, date, bname from newstorageDB where email='"+bean.getEmail()+"' and date='"+arraylist.get(loop)+"'";                         
 	            re=stm.executeQuery(query);
 	            while(re.next())
 	            {
@@ -78,6 +78,7 @@ public class OperationDBGetAllDataNewIOS {
 	            	beanarray[i].setDesc(re.getString(3));
 	            	beanarray[i].setType(re.getString(4));
 	            	beanarray[i].setDate(re.getString(5));
+	            	beanarray[i].setBname(re.getString(6));
 	            	beanarray[i].setStatus(1);
 	            	i++;
 	            }   

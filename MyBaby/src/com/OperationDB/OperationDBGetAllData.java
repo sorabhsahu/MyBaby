@@ -31,7 +31,8 @@ public class OperationDBGetAllData {
     {
     	try
         {  
-            String query="select * from newstorageDB where email='"+bean.getEmail()+"' and bname ='"+bean.getBname()+"'";     
+            String query="select * from newstorageDB where email='"+bean.getEmail()+"'";
+            //String query="select * from newstorageDB where email='"+bean.getEmail()+"' and bname ='"+bean.getBname()+"'";
             re=stm.executeQuery(query);
             while(re.next())
             {     
@@ -48,8 +49,8 @@ public class OperationDBGetAllData {
     	int i=0;
         try
         {
-        	
-            String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"' and bname='"+bean.getBname()+"'";                         
+        	String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"'";
+            //String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"' and bname='"+bean.getBname()+"'";                         
             re=stm.executeQuery(query);
             while(re.next())
             {
