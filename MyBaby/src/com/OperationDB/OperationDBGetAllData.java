@@ -49,7 +49,7 @@ public class OperationDBGetAllData {
     	int i=0;
         try
         {
-        	String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"'";
+        	String query="select movement, image, atribute, type, date,bname,baby_id from newstorageDB where email='"+bean.getEmail()+"'";
             //String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"' and bname='"+bean.getBname()+"'";                         
             re=stm.executeQuery(query);
             while(re.next())
@@ -60,6 +60,9 @@ public class OperationDBGetAllData {
             	beanarray[i].setDesc(re.getString(3));
             	beanarray[i].setType(re.getString(4));
             	beanarray[i].setDate(re.getString(5));
+            	beanarray[i].setBname(re.getString(6));
+            	beanarray[i].setBaby_id(re.getInt(7));
+            	
             	beanarray[i].setStatus(1);
             	i++;
             }   

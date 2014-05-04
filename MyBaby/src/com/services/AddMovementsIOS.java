@@ -29,7 +29,8 @@ public class AddMovementsIOS {
 			@FormDataParam("type")String type,
 			@FormDataParam("email")String email,
 			@FormDataParam("file") InputStream uploadedInputStream,
-			@FormDataParam("file") FormDataContentDisposition fileDetail)
+			@FormDataParam("file") FormDataContentDisposition fileDetail,
+			@FormDataParam("baby_id") String baby_id)
 	{
 		Calendar cal=Calendar.getInstance();
 	 	String time= cal.get(Calendar.HOUR)+""+cal.get(Calendar.MINUTE)+""+cal.get(Calendar.SECOND)+""+cal.get(Calendar.MILLISECOND);
@@ -49,6 +50,7 @@ public class AddMovementsIOS {
 		bean.setType(type);
 		bean.setDate(date1);
 		bean.setEmail(email);
+		bean.setBaby_id(Integer.parseInt(baby_id));
 		OperationDBAddMovementsIOS op=new OperationDBAddMovementsIOS();
 		BabyBean bean2=new BabyBean();
 		bean2=op.uploadImg(bean);
