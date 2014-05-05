@@ -11,7 +11,7 @@ public class ConnectDB
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-           con= DriverManager.getConnection("jdbc:mysql://localhost:3306/api", "root", "root");
+           con= DriverManager.getConnection("jdbc:mysql://112.196.38.250:3306/api", "spartun", "redhat");
         }
         catch(Exception e)
         {
