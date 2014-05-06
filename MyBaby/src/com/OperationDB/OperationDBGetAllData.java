@@ -2,6 +2,7 @@ package com.OperationDB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.codehaus.jettison.json.JSONObject;
@@ -78,6 +79,19 @@ public class OperationDBGetAllData {
         {
             System.out.println("Exception in get image "+e);
         }
+        finally
+    	  {
+            if(con!=null)
+            {
+              try 
+              {
+                con.close();
+              } catch (SQLException e)
+              {
+                e.printStackTrace();
+              }
+            }
+    	  }
         return ab;
     }
 

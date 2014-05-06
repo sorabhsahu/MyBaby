@@ -3,6 +3,7 @@ package com.OperationDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.bean.BabyBean;
@@ -47,6 +48,19 @@ public class OperationDBBabyUpdateIOS {
  	   {
  		   System.out.print("ios babyinfo update "+e);
  	   }
+ 	  finally
+  	  {
+          if(con!=null)
+          {
+            try 
+            {
+              con.close();
+            } catch (SQLException e)
+            {
+              e.printStackTrace();
+            }
+          }
+  	  }
  	   return bean;
     }
     public BabyBean babyUpdate(BabyBean bean)
@@ -69,6 +83,19 @@ public class OperationDBBabyUpdateIOS {
  	   {
  		   System.out.print("ios babyinfo update "+e);
  	   }
+ 	  finally
+  	  {
+          if(con!=null)
+          {
+            try 
+            {
+              con.close();
+            } catch (SQLException e)
+            {
+              e.printStackTrace();
+            }
+          }
+  	  }
  	   return bean;
     }
 

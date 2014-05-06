@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 
@@ -58,6 +59,19 @@ public class OperationDBBabyInfo {
 	 	   {
 	 		   System.out.print("Exception here in babyinfo"+e);
 	 	   }
+	 	  finally
+	 	   {
+	          if(con!=null)
+	          {
+	            try 
+	            {
+	              con.close();
+	            } catch (SQLException e)
+	            {
+	              e.printStackTrace();
+	            }
+	          }
+	        }
 	 	   return bean;
 	    }
 }

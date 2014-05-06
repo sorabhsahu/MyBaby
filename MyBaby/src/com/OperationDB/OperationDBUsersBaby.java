@@ -2,6 +2,7 @@ package com.OperationDB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.codehaus.jettison.json.JSONObject;
@@ -72,6 +73,19 @@ public class OperationDBUsersBaby {
     		
     		System.out.println(" exceptions in all baby get "+ e);
 		}
+    	finally
+    	  {
+            if(con!=null)
+            {
+              try 
+              {
+                con.close();
+              } catch (SQLException e)
+              {
+                e.printStackTrace();
+              }
+            }
+    	  }
     	return ab;
     }
 

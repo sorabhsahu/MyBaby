@@ -2,8 +2,11 @@ package com.OperationDB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+
 import org.codehaus.jettison.json.JSONObject;
+
 import com.bean.BabyBean;
 import com.connection.ConnectDB;
 public class OperationDBGetAllBabay {
@@ -78,7 +81,19 @@ public class OperationDBGetAllBabay {
     		System.out.println(" exceptions in all baby get "+ e);
 		}
     	
-    	
+    	finally
+    	  {
+            if(con!=null)
+            {
+              try 
+              {
+                con.close();
+              } catch (SQLException e)
+              {
+                e.printStackTrace();
+              }
+            }
+    	  }
     	
     	return ab;
     }

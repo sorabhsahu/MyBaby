@@ -3,6 +3,7 @@ package com.OperationDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.bean.BabyBean;
@@ -46,7 +47,19 @@ public class OperationDBPaypal {
   		   System.out.print("paypal connection failed"+e);
   	   }
     	
-    	
+    	 finally
+     	  {
+             if(con!=null)
+             {
+               try 
+               {
+                 con.close();
+               } catch (SQLException e)
+               {
+                 e.printStackTrace();
+               }
+             }
+     	  }
 		return bean;
     	
     }
@@ -70,7 +83,19 @@ public class OperationDBPaypal {
     		System.out.print("paypal select failed"+e);
 		
 		}
-    	
+    	finally
+    	  {
+            if(con!=null)
+            {
+              try 
+              {
+                con.close();
+              } catch (SQLException e)
+              {
+                e.printStackTrace();
+              }
+            }
+    	  }
     	
     	return bean;
     }

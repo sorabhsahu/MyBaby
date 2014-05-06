@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 
@@ -15,7 +16,7 @@ import com.connection.ConnectDB;
 public class OperationDBAddMovements {
 	Connection con;
     Statement stm;
-    ResultSet re;
+    ResultSet re,re1;
     public OperationDBAddMovements() 
     {
     	try
@@ -35,19 +36,12 @@ public class OperationDBAddMovements {
     	try
     	{
 			String query="select count(bname) from newstorageDB;";
-			re=stm.executeQuery(query);
-			while(re.next())
+			re1=stm.executeQuery(query);
+			while(re1.next())
 			{
-				count=count+re.getInt(1);
+				count=count+re1.getInt(1);
 			}
-		} 
-    	catch (Exception e) 
-    	{
-    		System.out.println("Exception in count text "+e);
-		}
-  	   try
-  	   	{       
-  		        int i=0;
+		    int i=0;
   	       	    Calendar cal=Calendar.getInstance();
   	     	 	String date=cal.get(Calendar.MONDAY)+"-"+cal.get(Calendar.DATE)+"-"+cal.get(Calendar.YEAR);
   	            String time= cal.get(Calendar.HOUR)+""+cal.get(Calendar.MINUTE)+""+cal.get(Calendar.SECOND)+""+cal.get(Calendar.MILLISECOND);
@@ -102,6 +96,20 @@ public class OperationDBAddMovements {
   	   {
   		   System.out.print("exception in add movements "+e);
   	   }
+    	finally
+    	{
+            if(con!=null)
+            {
+              try 
+              {
+                con.close();
+              } catch (SQLException e)
+              {
+                e.printStackTrace();
+              }
+            }
+    	}
+
   	   return bean1;
 
     }

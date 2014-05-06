@@ -3,6 +3,7 @@ package com.OperationDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.bean.BabyBean;
@@ -44,7 +45,21 @@ public class OperationDBBabyInfoIOS {
  	   catch(Exception e)
  	   {
  		   System.out.print("ios babyinfo connection failed"+e);
+ 		  bean.setStatus(0);
  	   }
+ 	  finally
+	   {
+         if(con!=null)
+         {
+           try 
+           {
+             con.close();
+           } catch (SQLException e)
+           {
+             e.printStackTrace();
+           }
+         }
+       }
  	   return bean;
     }
 
