@@ -45,13 +45,17 @@ public class OperationDBBabyUpdate {
 	   	   // FileOutputStream imageOutFile = new FileOutputStream("C://Users/sahu/Desktop/arc/"+time+"image.jpg");
 	   		 imageOutFile.write(imageByteArray);
 	         imageOutFile.close();
-	 	     PreparedStatement ps=con.prepareStatement("update babyinfo set name=?, age=?, dob=?, relation=?, image=? where baby_id=?");
-	   		 ps.setString(1, bean.getBname());
-	   	     ps.setString(2, bean.getAge());
+	 	     PreparedStatement ps=con.prepareStatement("update babyinfo,newstoragedb  set  babyinfo.name=?, babyinfo.age=?, babyinfo.dob=?,"
+													   + "babyinfo.relation=?, babyinfo.image=?,newstoragedb.bname=? where babyinfo.baby_id=?"
+							                           + "and newstoragedb.baby_id=?");
+	 	    ps.setString(1, bean.getBname());
+	   		 ps.setString(2, bean.getAge());
 	   		 ps.setString(3, bean.getDob());
 	   		 ps.setString(4, bean.getRelation());
-	         ps.setString(5, date+time+"image.jpg");
-	         ps.setInt(6, bean.getBaby_id());
+	         ps.setString(5, bean.getImagename());
+	         ps.setString(6, bean.getBname());
+	         ps.setString(7,bean.getBaby_id()+"");
+	         ps.setString(8, bean.getBaby_id()+"");
 	         int k=ps.executeUpdate();
 	         if(k>0)
 	         {

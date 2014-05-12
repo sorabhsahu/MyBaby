@@ -31,7 +31,7 @@ public class OperationDBAddMovementsIOS
 	 BabyBean bean1=new BabyBean();
  	   try
  	   	{
- 		        PreparedStatement pstm=con.prepareStatement("insert into newstorageDB values(?,?,?,?,?,?,?)");
+ 		        PreparedStatement pstm=con.prepareStatement("insert into newstorageDB values(?,?,?,?,?,?,?,?)");
  	    	     pstm.setString(1, bean.getBname());
  		         pstm.setString(2, bean.getMoments());
 		         pstm.setString(3, bean.getImagename());
@@ -39,6 +39,7 @@ public class OperationDBAddMovementsIOS
 		         pstm.setString(5,bean.getType());
 		         pstm.setString(6,bean.getDate());
 		         pstm.setString(7,bean.getEmail());
+		         pstm.setInt(8, bean.getBaby_id());
 		         int k=pstm.executeUpdate();
 		         if(k>0)
 		         {

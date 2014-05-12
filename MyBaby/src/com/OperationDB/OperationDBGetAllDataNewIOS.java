@@ -69,7 +69,8 @@ public class OperationDBGetAllDataNewIOS {
     		BabyBean beanarray[]=new BabyBean[count];
     		try
 	        {   
-	            String query="select movement, image, atribute, type, date, bname from newstorageDB where email='"+bean.getEmail()+"' and date='"+arraylist.get(loop)+"'";                         
+	            String query="select movement, image, atribute, type, date, bname, baby_id from newstorageDB "
+	            			 + "where email='"+bean.getEmail()+"' and date='"+arraylist.get(loop)+"'";                         
 	            re=stm.executeQuery(query);
 	            while(re.next())
 	            {
@@ -80,6 +81,7 @@ public class OperationDBGetAllDataNewIOS {
 	            	beanarray[i].setType(re.getString(4));
 	            	beanarray[i].setDate(re.getString(5));
 	            	beanarray[i].setBname(re.getString(6));
+	            	beanarray[i].setBaby_id( Integer.parseInt( re.getString(7)));
 	            	beanarray[i].setStatus(1);
 	            	i++;
 	            }   
