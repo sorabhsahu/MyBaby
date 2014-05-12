@@ -50,17 +50,19 @@ public class OperationDBGetAllData {
     	int i=0;
         try
         {
-        	String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"'";
+        	String query="select  movement, image, atribute, type, date ,bname from newstorageDB where email='"+bean.getEmail()+"'";
             //String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"' and bname='"+bean.getBname()+"'";                         
             re=stm.executeQuery(query);
             while(re.next())
             {
             	beanarray[i]=new BabyBean();
+            	
             	beanarray[i].setMoments(re.getString(1));
             	beanarray[i].setImgpath("http://112.196.38.250:8080/MyBaby/image/"+re.getString(2));
             	beanarray[i].setDesc(re.getString(3));
             	beanarray[i].setType(re.getString(4));
             	beanarray[i].setDate(re.getString(5));
+            	beanarray[i].setBname(re.getString(6));
             	beanarray[i].setStatus(1);
             	i++;
             }   
