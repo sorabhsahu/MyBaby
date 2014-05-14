@@ -51,7 +51,7 @@ public class OperationDBBabyUpdateIOS {
  	   {
  		   System.out.print("ios babyinfo update "+e);
  	   }
-<<<<<<< HEAD
+
  	  finally
   	  {
           if(con!=null)
@@ -65,10 +65,6 @@ public class OperationDBBabyUpdateIOS {
             }
           }
   	  }
-=======
- 	   
- 	   
->>>>>>> 0b3912a7f0816adc8a0941efb9a4d0f5f693c043
  	   return bean;
     }
     

@@ -50,12 +50,11 @@ public class OperationDBGetAllData {
     	int i=0;
         try
         {
-<<<<<<< HEAD
-        	String query="select  movement, image, atribute, type, date ,bname from newstorageDB where email='"+bean.getEmail()+"'";
-=======
+
+        //	String query="select  movement, image, atribute, type, date ,bname from newstorageDB where email='"+bean.getEmail()+"'";
+
         	String query="select movement, image, atribute, type, date,bname,baby_id from newstorageDB where email='"+bean.getEmail()+"'";
->>>>>>> 0b3912a7f0816adc8a0941efb9a4d0f5f693c043
-            //String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"' and bname='"+bean.getBname()+"'";                         
+        //String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"' and bname='"+bean.getBname()+"'";                         
             re=stm.executeQuery(query);
             while(re.next())
             {
@@ -67,11 +66,9 @@ public class OperationDBGetAllData {
             	beanarray[i].setType(re.getString(4));
             	beanarray[i].setDate(re.getString(5));
             	beanarray[i].setBname(re.getString(6));
-<<<<<<< HEAD
-=======
+
             	beanarray[i].setBaby_id(re.getInt(7));
             	
->>>>>>> 0b3912a7f0816adc8a0941efb9a4d0f5f693c043
             	beanarray[i].setStatus(1);
             	i++;
             }   

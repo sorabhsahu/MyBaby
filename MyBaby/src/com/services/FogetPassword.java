@@ -19,12 +19,12 @@ public class FogetPassword {
 	public String forgetPassword(@FormParam("email")String email)
 	{
 		Gson gson=new Gson();
-		OperationDBForgetPass op=new OperationDBForgetPass();
 		BabyBean bean=new BabyBean();
 		BabyBean bean2=new BabyBean();
 		BabyBean bean3=null;
 		BabyBean bean4=null;
 		bean.setEmail(email);
+		OperationDBForgetPass op=new OperationDBForgetPass();
 		bean2= op.forgetPass(bean);
 		if(bean2.getStatus()>=1)
 		{
