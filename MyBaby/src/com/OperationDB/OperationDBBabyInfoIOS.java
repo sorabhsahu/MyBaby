@@ -28,13 +28,12 @@ public class OperationDBBabyInfoIOS {
     {
  	   try
  	   	{	 	   
-	   		 PreparedStatement ps=con.prepareStatement("insert into babyinfo( name, age, dob, relation, image, email) values(?,?,?,?,?,?)");
+	   		 PreparedStatement ps=con.prepareStatement("insert into babyinfo( name, age, relation, image, email) values(?,?,?,?,?)");
 	   		 ps.setString(1, bean.getBname());
 	   		 ps.setString(2, bean.getAge());
-	   		 ps.setString(3, bean.getDob());
-	   		 ps.setString(4, bean.getRelation());
-	         ps.setString(5, bean.getImagename());
-	         ps.setString(6, bean.getEmail());
+	   		 ps.setString(3, bean.getRelation());
+	         ps.setString(4, bean.getImagename());
+	         ps.setString(5, bean.getEmail());
 	         int k=ps.executeUpdate();
 	         if(k>0)
 	         {

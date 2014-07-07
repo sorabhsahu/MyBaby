@@ -15,7 +15,6 @@ public class OperationDBAddTest {
 	    ResultSet re;
 	    
 	    public OperationDBAddTest() {
-			// TODO Auto-generated constructor stub
 	    	try
 	         {
 	             con=ConnectDB.connect();

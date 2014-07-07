@@ -6,12 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Calendar;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
-
+import com.Contexts.AllPath;
 import com.OperationDB.OperationDBBabyInfoIOS;
 import com.bean.BabyBean;
 import com.google.gson.Gson;
@@ -26,25 +25,23 @@ public class BabyInfoIOS {
 	public String uploadFile(
 			@FormDataParam("name")String name,
 			@FormDataParam("age")String age,
-			@FormDataParam("dob")String dob,
 			@FormDataParam("relation")String relation,
 			@FormDataParam("email")String email,
 			@FormDataParam("file") InputStream uploadedInputStream,
 			@FormDataParam("file") FormDataContentDisposition fileDetail)
 	{
+		BabyBean bean=new BabyBean();
 		Calendar cal=Calendar.getInstance();
 	 	String time= cal.get(Calendar.HOUR)+""+cal.get(Calendar.MINUTE)+""+cal.get(Calendar.SECOND)+""+cal.get(Calendar.MILLISECOND);
 	 	String date=cal.get(Calendar.MONDAY)+"-"+cal.get(Calendar.DATE)+"-"+cal.get(Calendar.YEAR);
-	 	String uploadedFileLocation = "/usr/local/apache-tomcat-7.0.53/webapps/MyBaby/image/"+date+time
-				+ fileDetail.getFileName();
+	 	//String uploadedFileLocation = AllPath.getFinalPath()+date+time+fileDetail.getFileName();
+	 	String uploadedFileLocation = "C://Users/sahu/Desktop/"+time+"image.jpg"+ fileDetail.getFileName();
 		writeToFile(uploadedInputStream, uploadedFileLocation);
 		Gson gson=new Gson();
-		BabyBean bean=new BabyBean();
 		BabyBean bean2=new BabyBean();
 		bean.setBname(name);
 		bean.setImagename(date+time+fileDetail.getFileName());
 		bean.setAge(age);
-		bean.setDob(dob);
 		bean.setRelation(relation);
 		bean.setEmail(email);		
 		OperationDBBabyInfoIOS op=new OperationDBBabyInfoIOS();

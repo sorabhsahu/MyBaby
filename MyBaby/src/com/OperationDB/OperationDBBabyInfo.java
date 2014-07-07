@@ -10,6 +10,7 @@ import java.util.Calendar;
 
 import javax.xml.bind.DatatypeConverter;
 
+import com.Contexts.AllPath;
 import com.bean.BabyBean;
 import com.connection.ConnectDB;
 
@@ -37,8 +38,7 @@ public class OperationDBBabyInfo {
 		 	    String time= cal.get(Calendar.HOUR)+""+cal.get(Calendar.MINUTE)+""+cal.get(Calendar.SECOND)+""+cal.get(Calendar.MILLISECOND);
 		 		String p=bean.getPath();
 		 	    byte[] imageByteArray = DatatypeConverter.parseBase64Binary(p);
-		   		FileOutputStream imageOutFile = new FileOutputStream(
-		                 "/usr/local/apache-tomcat-7.0.53/webapps/MyBaby/image/"+date+time+"image.jpg");
+		   		FileOutputStream imageOutFile = new FileOutputStream(AllPath.getFinalPath()+date+time+"image.jpg");
 		   		//FileOutputStream imageOutFile = new FileOutputStream("C://Users/sahu/Desktop/"+time+"image.jpg");
 		   		 imageOutFile.write(imageByteArray);
 		         imageOutFile.close();

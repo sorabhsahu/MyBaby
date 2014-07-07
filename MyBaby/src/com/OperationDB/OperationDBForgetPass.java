@@ -33,40 +33,38 @@ public class OperationDBForgetPass {
  	   bbean.setRandom(randm);
  	   bbean.setPassword(randm);
  	   try{
- 		   PreparedStatement ps=con.prepareStatement("update register set rnumber=? , password=? where email=?");
- 		   ps.setString(1, bbean.getRandom());
- 		   ps.setString(2, bbean.getPassword());
-		   ps.setString(3, bbean.getEmail());
+ 		   PreparedStatement ps=con.prepareStatement("update register set password=? where email=?");
+ 		   ps.setString(1, bbean.getPassword());
+		   ps.setString(2, bbean.getEmail());
  		   i=ps.executeUpdate();
  		   if(i>0)
  		   {
- 			   
- 			   bbean.setStatus(i);
- 			  
+ 			   bbean.setStatus(i);  
  		   }
  		   else
  		   {
  			   bbean.setStatus(i);
- 	   
  		   }
  	   }
  	   catch(Exception e)
  	   {
  		   System.out.print(e);
- 	}
- 	  finally
-  	  {
-          if(con!=null)
-          {
-            try 
-            {
-              con.close();
-            } catch (SQLException e)
-            {
-              e.printStackTrace();
-            }
-          }
-  	  }
+ 	   }
+ 	   finally
+  	   {
+ 		   
+ 		   if(con!=null)
+ 		   {
+ 			   try 
+ 			   {
+ 				   con.close();
+ 			   }
+ 			   catch (SQLException e)
+ 			   {
+ 				   e.printStackTrace();
+ 			   }
+ 		   }
+  	   }
  	   return bbean;
     }
 }

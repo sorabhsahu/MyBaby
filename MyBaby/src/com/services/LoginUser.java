@@ -20,7 +20,16 @@ public class LoginUser {
 		Gson gson=new Gson();
 		OperationDBLogin op=new OperationDBLogin();
 		BabyBean bean=new BabyBean();
-		bean= op.getIn(email,password);
+		if(email.isEmpty()||password.isEmpty())
+		{
+			bean.setStatus(0);
+			bean.setStatusmsg("please enter all values");
+			return gson.toJson(bean);
+		}
+		else
+		{
+			bean= op.getIn(email,password);
+		}
 		return gson.toJson(bean);
 	}
 }

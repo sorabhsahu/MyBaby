@@ -15,7 +15,6 @@ public class OperationDBPaypal {
     Statement stm;
     ResultSet re;
     public OperationDBPaypal() {
-		// TODO Auto-generated constructor stub
     	 try
          {
              con=ConnectDB.connect();

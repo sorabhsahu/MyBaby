@@ -10,6 +10,7 @@ import java.util.Calendar;
 
 import javax.xml.bind.DatatypeConverter;
 
+import com.Contexts.AllPath;
 import com.bean.BabyBean;
 import com.connection.ConnectDB;
 
@@ -19,7 +20,6 @@ public class OperationDBBabyUpdate {
     ResultSet re;
     static int images=0;
     public OperationDBBabyUpdate() {
-		// TODO Auto-generated constructor stub
     	try
         {
             con=ConnectDB.connect();
@@ -40,22 +40,18 @@ public class OperationDBBabyUpdate {
 	 	    String time= cal.get(Calendar.HOUR)+""+cal.get(Calendar.MINUTE)+""+cal.get(Calendar.SECOND)+""+cal.get(Calendar.MILLISECOND);
 	 	    String p=bean.getPath();
 	   		byte[] imageByteArray = DatatypeConverter.parseBase64Binary(p);
-	   		FileOutputStream imageOutFile = new FileOutputStream(
-	                 "/usr/local/apache-tomcat-7.0.53/webapps/MyBaby/image/"+date+time+"image.jpg");
-	   	   // FileOutputStream imageOutFile = new FileOutputStream("C://Users/sahu/Desktop/arc/"+time+"image.jpg");
+	   		FileOutputStream imageOutFile = new FileOutputStream(AllPath.getFinalPath()+date+time+"image.jpg");
+	   	 //  FileOutputStream imageOutFile = new FileOutputStream("C://Users/sahu/Desktop/"+date+time+"image.jpg");
 	   		 imageOutFile.write(imageByteArray);
 	         imageOutFile.close();
-	 	     PreparedStatement ps=con.prepareStatement("update babyinfo,newstoragedb  set  babyinfo.name=?, babyinfo.age=?, babyinfo.dob=?,"
-													   + "babyinfo.relation=?, babyinfo.image=?,newstoragedb.bname=? where babyinfo.baby_id=?"
-							                           + "and newstoragedb.baby_id=?");
+	 	     PreparedStatement ps=con.prepareStatement("update babyinfo set name=?,age=?,dob=?,"
+													   + "relation=?, image=? where baby_id=?");
 	 	    ps.setString(1, bean.getBname());
 	   		 ps.setString(2, bean.getAge());
 	   		 ps.setString(3, bean.getDob());
 	   		 ps.setString(4, bean.getRelation());
-	         ps.setString(5, bean.getImagename());
-	         ps.setString(6, bean.getBname());
-	         ps.setString(7,bean.getBaby_id()+"");
-	         ps.setString(8, bean.getBaby_id()+"");
+	         ps.setString(5, date+time+"image.jpg");
+	         ps.setString(6, bean.getBaby_id()+"");
 	         int k=ps.executeUpdate();
 	         if(k>0)
 	         {

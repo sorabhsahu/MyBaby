@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import org.codehaus.jettison.json.JSONObject;
 
+import com.Contexts.AllPath;
 import com.bean.BabyBean;
 import com.connection.ConnectDB;
 public class OperationDBGetAllBabay {
@@ -31,16 +32,16 @@ public class OperationDBGetAllBabay {
     {
     	try
         {  
-    		String query= "select name from babyinfo where  email='"+bean.getEmail()+"'";
+    		String query= "select count(name) from babyinfo where  email='"+bean.getEmail()+"'";
     		re=stm.executeQuery(query);
             while(re.next())
             {     
-            	count++;
+            	count=re.getInt(1);
             }
         }
         catch(Exception e)
         {
-            System.out.println("Exception searchidea coun "+e);
+            System.out.println("Exception searchidea coun getall baby "+e);
         }
     	JSONObject ab = new JSONObject();
     	BabyBean beanarray[]=new BabyBean[count];
@@ -59,7 +60,7 @@ public class OperationDBGetAllBabay {
             	beanarray[i].setAge(re1.getString(2));
             	beanarray[i].setDob(re1.getString(3));
             	beanarray[i].setRelation(re1.getString(4));
-            	beanarray[i].setImgpath("http://112.196.38.250:8080/MyBaby/image/"+re1.getString(5));
+            	beanarray[i].setImgpath( AllPath.getFinalURL()+re1.getString(5));
             	beanarray[i].setName(re1.getString(6));
             	beanarray[i].setBaby_id(re1.getInt(7));
             	beanarray[i].setStatus(status);

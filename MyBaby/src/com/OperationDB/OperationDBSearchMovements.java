@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import org.codehaus.jettison.json.JSONObject;
 
+import com.Contexts.AllPath;
 import com.bean.BabyBean;
 import com.connection.ConnectDB;
 
@@ -54,7 +55,7 @@ public class OperationDBSearchMovements {
             while(re.next())
             {
             	beanarray[i]=new BabyBean();
-            	beanarray[i].setImgpath("http://112.196.38.250:8080/MyBaby/image/"+re.getString(1));
+            	beanarray[i].setImgpath( AllPath.getFinalURL()+re.getString(1));
             	beanarray[i].setDesc(re.getString(2));
             	beanarray[i].setType(re.getString(3));
             	beanarray[i].setStatus(1);

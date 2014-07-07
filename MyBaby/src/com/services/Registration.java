@@ -26,7 +26,24 @@ public class Registration {
 		bean.setPassword(password);
 		bean.setCpassword(cpassword);
 		OperationDBRegistration db=new OperationDBRegistration();
-		bean2=db.getRegister(bean);
-		return gson.toJson(bean2);
+		if(name.isEmpty()||password.isEmpty()||cpassword.isEmpty()||email.isEmpty())
+		{
+			BabyBean bean1=new BabyBean();
+			bean1.setStatus(0);
+			bean1.setStatusmsg("please fill all values");
+			return gson.toJson(bean1);
+		}
+		if(password.matches(cpassword))
+		{
+			bean2=db.getRegister(bean);
+			return gson.toJson(bean2);
+		}
+		else
+		{
+			bean2=new BabyBean();
+			bean2.setStatus(0);
+			bean2.setStatusmsg("password mismatch");
+			return gson.toJson(bean2);
+		}
 	}
 }

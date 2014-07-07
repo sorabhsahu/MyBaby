@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import com.Contexts.AllPath;
 import com.bean.BabyBean;
 import com.connection.ConnectDB;
 
@@ -41,7 +42,7 @@ public class OperationDBGetBabyInfo
 	            	bean.setAge(re.getString(2));
 	            	bean.setDob(re.getString(3));
 	            	bean.setRelation(re.getString(4));
-	                bean.setImgpath("http://112.196.38.250:8080/MyBaby/image/"+re.getString(5));
+	                bean.setImgpath( AllPath.getFinalURL()+re.getString(5));
 	            	bean.setName(re.getString(6));
 	            	bean.setBaby_id(re.getInt(6));
 	            	bean.setStatus(status);

@@ -30,7 +30,7 @@ public class OperationDBLogin {
     	int status=0;
         try
         {
-            String query="select name, email from register where (email='"+email+"'or name='"+email+"')and password='"+password+"'";
+            String query="select name, email from register where email='"+email+"' and password='"+password+"'";
             re=stm.executeQuery(query);
             while(re.next())
             {
@@ -39,14 +39,19 @@ public class OperationDBLogin {
             	bean.setName(re.getString(1));
             	bean.setEmail(re.getString(2));
             	bean.setBabycheck("no");
+            	bean.setTotalBaby("0");
             }
             if(status>=1)
             {
-            	String query1="select email from babyinfo where email='"+email+"'";
+            	String query1="select count(email) from babyinfo where email='"+email+"'";
                 re=stm.executeQuery(query1);
                 while(re.next())
                 {
-                	bean.setBabycheck("yes");
+                	if(re.getInt(1)>1)
+                	{
+	                	bean.setBabycheck("yes");
+	                	bean.setTotalBaby(re.getInt(1)+"");
+                	}
                 }
             }
             

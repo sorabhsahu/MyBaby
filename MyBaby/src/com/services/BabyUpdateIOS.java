@@ -12,6 +12,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 
+import com.Contexts.AllPath;
 import com.OperationDB.OperationDBBabyUpdateIOS;
 import com.bean.BabyBean;
 import com.google.gson.Gson;
@@ -50,10 +51,8 @@ public class BabyUpdateIOS {
 			Calendar cal=Calendar.getInstance();
 			String time= cal.get(Calendar.HOUR)+""+cal.get(Calendar.MINUTE)+""+cal.get(Calendar.SECOND)+""+cal.get(Calendar.MILLISECOND);
 		 	String date=cal.get(Calendar.MONDAY)+"-"+cal.get(Calendar.DATE)+"-"+cal.get(Calendar.YEAR);
-			String uploadedFileLocation = "/usr/local/apache-tomcat-7.0.53/webapps/MyBaby/image/"+date+time
-			+ fileDetail.getFileName();
-		 	/*String uploadedFileLocation = "C://Users/sahu/Desktop/"+time
-					+ fileDetail.getFileName();*/
+			String uploadedFileLocation = AllPath.getFinalPath()+date+time+fileDetail.getFileName();
+		 	//String uploadedFileLocation = "C://Users/sahu/Desktop/"+time+fileDetail.getFileName();
 			writeToFile(uploadedInputStream, uploadedFileLocation);
 		 	bean.setImagename(date+time+fileDetail.getFileName());
 			bean2=op.babyInfo(bean);

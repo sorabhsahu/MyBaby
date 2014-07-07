@@ -14,7 +14,6 @@ public class OperationDBSaveFile {
     Statement stm;
     ResultSet re,re1;
     public OperationDBSaveFile() {
-		// TODO Auto-generated constructor stub
     	 try
          {
              con=ConnectDB.connect();

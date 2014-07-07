@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import org.codehaus.jettison.json.JSONObject;
 
+import com.Contexts.AllPath;
 import com.bean.BabyBean;
 import com.connection.ConnectDB;
 
@@ -50,33 +51,31 @@ public class OperationDBGetAllData {
     	int i=0;
         try
         {
-
-        //	String query="select  movement, image, atribute, type, date ,bname from newstorageDB where email='"+bean.getEmail()+"'";
-
-        	String query="select movement, image, atribute, type, date,bname,baby_id from newstorageDB where email='"+bean.getEmail()+"'";
-        //String query="select movement, image, atribute, type, date from newstorageDB where email='"+bean.getEmail()+"' and bname='"+bean.getBname()+"'";                         
+        	String query="select movement, image, atribute, type, date,bname from newstorageDB where email='"+bean.getEmail()+"'";
             re=stm.executeQuery(query);
             while(re.next())
             {
             	beanarray[i]=new BabyBean();
-            	
             	beanarray[i].setMoments(re.getString(1));
-            	beanarray[i].setImgpath("http://112.196.38.250:8080/MyBaby/image/"+re.getString(2));
+            	if(re.getString(2).contains("."))
+            	{
+            		beanarray[i].setImgpath( AllPath.getFinalURL()+re.getString(2));
+            	}
+            	else
+            	{
+            		beanarray[i].setImgpath(AllPath.getFinalURL()+"text_icon.png");
+            	}
             	beanarray[i].setDesc(re.getString(3));
             	beanarray[i].setType(re.getString(4));
             	beanarray[i].setDate(re.getString(5));
             	beanarray[i].setBname(re.getString(6));
-
-            	beanarray[i].setBaby_id(re.getInt(7));
-            	
             	beanarray[i].setStatus(1);
             	i++;
             }   
             ab.put("result", beanarray);
-                        
             if(count>0)
             {
-            		ab.put("status",1);
+           		ab.put("status",1);
             }
             else
             {
@@ -88,18 +87,19 @@ public class OperationDBGetAllData {
             System.out.println("Exception in get image "+e);
         }
         finally
-    	  {
-            if(con!=null)
-            {
-              try 
-              {
-                con.close();
-              } catch (SQLException e)
-              {
-                e.printStackTrace();
-              }
-            }
-    	  }
+		{
+		    if(con!=null)
+		    {
+		    	try 
+		    	{
+		    		con.close();
+		    	}
+		    	catch (SQLException e)
+		    	{
+		    		e.printStackTrace();
+		    	}
+		    }
+		}
         return ab;
     }
 

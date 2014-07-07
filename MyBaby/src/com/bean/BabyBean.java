@@ -3,11 +3,48 @@ package com.bean;
 
 
 public class BabyBean {
-	String name,email,password,cpassword,random,bname,dob,relation,age;
+	String username,email,password,cpassword,random,bname,dob,relation,age,totalBaby;
+	/**
+	 * @return the totalBaby
+	 */
+	public String getTotalBaby() {
+		return totalBaby;
+	}
+
+	/**
+	 * @param totalBaby the totalBaby to set
+	 */
+	public void setTotalBaby(String totalBaby) {
+		this.totalBaby = totalBaby;
+	}
+
 	String path,imgpath,desc,type, date, imagename, babycheck, text;
-	String conform,moments;
+	String conform,moments,icon,statusmsg;
+	String name;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getStatusmsg() {
+		return statusmsg;
+	}
+
+	public void setStatusmsg(String statusmsg) {
+		this.statusmsg = statusmsg;
+	}
+
 	int baby_id;
-	
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 
 	public String getMoments() {
 		return moments;
@@ -163,12 +200,13 @@ public void setImagename(String imagename) {
 		Status = status;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {
